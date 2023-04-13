@@ -1,7 +1,7 @@
 """
 This file will be used to test code randomly, basically as scratch paper!
 """
-"""
+""" Gambler's Ruin
 import random
 start = 20
 goal = 50
@@ -27,7 +27,7 @@ print((wins/simulations)*100)
 import random
 
 tries = 0
-for x in range(     ):
+for x in range(1000):
     coupons = []
     num_coupons = 52
 
@@ -41,27 +41,6 @@ print(tries/1000)
 """
 
 
-1-100 days
-day
-    n customers
-        n lines, start with name
 
-n = int(input())
-
-while n != 0:
-    names_with_orders = {}
-    dishes_name = []
-    orders = []
-    for x in range(n):
-        people.append(input())
-    for person in people:
-        person.split()
-        names = person[0]
-
-
-
-
-
-    n = int(input())
 
 
