@@ -63,3 +63,4 @@ if N>= 0 and N <= 50:
             print('')
         else:
             print('panagram')"""
+
