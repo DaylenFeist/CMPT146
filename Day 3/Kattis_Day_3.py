@@ -62,7 +62,7 @@ else:
     print('invalid')
 
 
-"""
+
 stuff = []
 for x in range(5):
     stuff.append(input())

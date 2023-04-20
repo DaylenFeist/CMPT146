@@ -9,11 +9,11 @@ from PIL import Image
 import numpy as np
 import random
 
-WIDTH = 500
-HEIGHT = 500
+WIDTH = 250
+HEIGHT = 250
 MOVE_SPEED = 1
-FRAMES = 500
-NUM_AGENTS = 1000
+FRAMES = 200
+NUM_AGENTS = 10000
 
 SNIFF_ANGLE = np.pi / 8
 SNIFF_LENGTH = 1
@@ -35,7 +35,6 @@ class agent_class:
         self.pos_y = self.pos_y + MOVE_SPEED * np.sin(self.rotation)
 
         # make better this sucks
-
         if self.pos_x >= WIDTH - .5:
             self.pos_x -= WIDTH
         if self.pos_x < 0:
@@ -81,7 +80,7 @@ def check_square(trail_map, agent, angle, distance):
     if square_x >= WIDTH or square_x < 0 or square_y >= HEIGHT or square_y < 0:
         square_brightness = 0
     else:
-        square_brightness = trail_map[square_x, square_y]
+        square_brightness = trail_map[square_y, square_x]
     return square_brightness
 
 
@@ -100,13 +99,12 @@ def update_trail_map(trail_map, list_of_agents):
     """
     for agent in agents:
         # Each Agent releases a trail which is
-        trail_map[trail_map >= 205] = 205
-        trail_map[int(round(agent.pos_y, 0)), int(round(agent.pos_x, 0))] += 50
+        trail_map[int(round(agent.pos_y, 0)), int(round(agent.pos_x, 0))] == 255
     # We want to also diffuse
     # and darken the trail_map over time
 
-    trail_map[trail_map <= 5] = 5
-    trail_map -= 5
+    trail_map[trail_map <= 8] = 8
+    trail_map -= 8
     return trail_map
 
 
@@ -114,7 +112,8 @@ def update_trail_map(trail_map, list_of_agents):
 agents = []
 # create agents with different presets
 for x in range(NUM_AGENTS):
-    agents.append(agent_class(random.randint(25, 75), random.randint(25, 75), random.random() * np.pi * 2))
+    agents.append(agent_class(random.randint(WIDTH/2 -25, WIDTH/2 + 25), random.randint(HEIGHT/2 -25, HEIGHT/2 + 25),
+                                  random.random() * np.pi * 2))
 
 # create the trail map to specficiations
 trail_map = np.zeros((WIDTH, HEIGHT),dtype=np.uint8)
@@ -128,7 +127,7 @@ for i in range(FRAMES):
     # update all agents
     for agent in agents:
         agent.move_agent()
-        agent.sniff(trail_map)
+        #agent.sniff(trail_map)
         # print(agent.__str__())
 
     # update the trail map
